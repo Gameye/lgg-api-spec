@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -e # Exit immediately if a command exits with a non-zero status.
+
+npx --yes redoc-cli@0.10.2 lint src/openapi.yaml

@@ -1,0 +1,17 @@
+openapi: 3.0.1
+info:
+  title: Matchmaking API
+  version: "0.0.0-local"
+  description: |
+    An OpenAPI specification for Gameye's matchmaking API.
+
+  contact:
+    name: Gameye Support
+    email: support@gameye.com
+
+  x-logo:
+    url: https://static.gameye.com/images/android-chrome-512x512.png
+    altText: Gameye
+
+paths: {}
+components: {}

@@ -1,0 +1,6 @@
+lint:
+  rules:
+    info-description: false
+    info-license: false
+    no-empty-servers: false
+    operation-summary: false
