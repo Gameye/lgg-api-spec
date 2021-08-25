@@ -1,3 +1,3 @@
-# Matchmaking API Spec
+# LatencyGG API Spec
 
-An OpenAPI spec for the Matchmaking API service.
+An OpenAPI spec for the LatencyGG API service.
