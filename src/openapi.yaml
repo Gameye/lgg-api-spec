@@ -1,9 +1,9 @@
 openapi: 3.0.1
 info:
-  title: Matchmaking API
+  title: LatencyGG API
   version: "0.0.0-local"
   description: |
-    An OpenAPI specification for Gameye's matchmaking API.
+    An OpenAPI specification for Gameye's LatencyGG API.
 
   contact:
     name: Gameye Support
