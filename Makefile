@@ -32,7 +32,7 @@ out/static/index.html: out/static/openapi.yaml
 	npx --yes redoc-cli bundle $< --output $@
 
 out/npm/: out/static/openapi.yaml
-	npx --yes oas3ts-generator@1.1.3 package \
+	npx --yes oas3ts-generator@1.2.1 package \
 		--package-dir $@ \
 		--package-name @gameye/$(PACKAGE_NAME) \
 		--request-type application/json \
