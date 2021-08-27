@@ -22,8 +22,7 @@ paths:
     get:
       operationId: get-flexmatch-buckets
       summary: |
-        Fetches a collection of player attributes of locations and their latency values in a FlexMatch compatible format.
-        The response body can be directly inserted into a FlexMatch ticket for a single player.
+        Fetches a collection of player attributes of locations and their latency values in a FlexMatch compatible format. The response body can be directly inserted into a FlexMatch ticket for a single player.
       parameters:
         - name: image
           description: The image name of the game.
@@ -85,6 +84,14 @@ paths:
                           items:
                             type: string
                             example: frankfurt
+              example:
+                PlayerAttributes:
+                  {
+                    "latency_30": { SL: ["frankfurt"] },
+                    "latency_50": { SL: ["amsterdam"] },
+                    "latency_80": { SL: ["london-east-1"] },
+                    "latency_130": { SL: ["us-east-1"] },
+                  }
 
 components:
   securitySchemes:
