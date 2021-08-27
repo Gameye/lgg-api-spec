@@ -22,7 +22,7 @@ paths:
     get:
       operationId: get-flexmatch-locations
       summary: |
-        Queries a list of locations and their latency values in a FlexMatch compatible format.
+        Fetches a collection of player attributes of locations and their latency values in a FlexMatch compatible format.
         The response body can be directly inserted into a FlexMatch ticket for a single player.
       parameters:
         - name: image
@@ -61,7 +61,7 @@ paths:
       responses:
         "200":
           description: |
-            Successfully fetched a list of locations.
+            Successfully fetched player attributes containing list of buckets and locations.
           content:
             application/json:
               schema:
@@ -73,6 +73,17 @@ paths:
                   PlayerAttributes:
                     type: object
                     description: A list of buckets with locations.
+                    additionalProperties:
+                      type: object
+                      additionalProperties: false
+                      required:
+                        - SL
+                      properties:
+                        SL:
+                          type: array
+                          items:
+                            type: string
+                            example: frankfurt
 
 components:
   securitySchemes:
