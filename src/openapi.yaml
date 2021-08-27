@@ -67,6 +67,12 @@ paths:
               schema:
                 type: object
                 additionalProperties: false
+                required:
+                  - PlayerAttributes
+                properties:
+                  PlayerAttributes:
+                    type: object
+                    description: A list of buckets with locations.
 
 components:
   securitySchemes:
