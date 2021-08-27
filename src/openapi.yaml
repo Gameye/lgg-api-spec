@@ -90,8 +90,8 @@ components:
     gameyeApiKey:
       type: apiKey
       in: header
-      name: GAMEYE_API_KEY
+      name: GAMEYE-API-KEY
     lggApiKey:
       type: apiKey
       in: header
-      name: LGG_API_KEY
+      name: LGG-API-KEY
