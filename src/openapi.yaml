@@ -91,12 +91,12 @@ components:
     gameyeApiKey:
       type: apiKey
       in: header
-      name: GAMEYE-API-KEY
+      name: gameye-api-key
       description: |
         An API key needed to communicate with Gameye's services.
     lggApiKey:
       type: apiKey
       in: header
-      name: LGG-API-KEY
+      name: lgg-api-key
       description: |
         An API key needed to communicate with LatencyGG's services.
