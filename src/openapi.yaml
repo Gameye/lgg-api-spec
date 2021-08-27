@@ -18,30 +18,6 @@ security:
     lggApiKey: []
 
 paths:
-  /readiness:
-    get:
-      operationId: readiness
-      security: []
-      responses:
-        "204":
-          description: |
-            This service is ready to process new requests.
-        "503":
-          description: |
-            This service is not yet ready.
-
-  /liveness:
-    get:
-      operationId: liveness
-      security: []
-      responses:
-        "204":
-          description: |
-            The process of this service is currently live.
-        "503":
-          description: |
-            The process of this service has been terminated.
-
   /get-flexmatch-locations/{image}:
     get:
       operationId: get-flexmatch-locations
