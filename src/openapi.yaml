@@ -18,9 +18,9 @@ security:
     lggApiKey: []
 
 paths:
-  /get-flexmatch-locations/{image}:
+  /matchmaker/flexmatch/buckets/{image}:
     get:
-      operationId: get-flexmatch-locations
+      operationId: get-flexmatch-buckets
       summary: |
         Fetches a collection of player attributes of locations and their latency values in a FlexMatch compatible format.
         The response body can be directly inserted into a FlexMatch ticket for a single player.
@@ -32,34 +32,32 @@ paths:
           schema:
             type: string
             minLength: 1
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              additionalProperties: false
-              required:
-                - milliseconds
-                - ip
-              properties:
-                milliseconds:
-                  type: array
-                  description: A list of milliseconds to create buckets for.
-                  items:
-                    type: number
-                    minimum: 0
-                    example: 30
-                  minItems: 1
-                ip:
-                  type: string
-                  description: The public IP (ipv4 or ipv6) of the client.
-                  oneOf:
-                    - type: string
-                      format: ipv4
-                    - type: string
-                      format: ipv6
-                  example: "203.0.113.3"
+        - name: latency_limit
+          in: query
+          required: true
+          description: |
+            A list of latency milliseconds to create buckets for, defined in milliseconds.
+          schema:
+            type: number
+            example: 30
+            #type: array
+            #items:
+            #type: number
+            #minimum: 0
+            #example: 30
+            #minItems: 1
+        - name: ip
+          in: query
+          required: true
+          description: The public IP (ipv4 or ipv6) of the client.
+          schema:
+            type: string
+            oneOf:
+              - type: string
+                format: ipv4
+              - type: string
+                format: ipv6
+            example: "203.0.113.3"
       responses:
         "200":
           description: |
