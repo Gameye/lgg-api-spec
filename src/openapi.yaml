@@ -23,11 +23,41 @@ paths:
       operationId: get-flexmatch-locations
       summary: |
         Queries a list of locations and their latency values in a FlexMatch compatible format.
+        The response body can be directly inserted into a FlexMatch ticket for a single player.
       parameters:
         - name: image
+          description: The image name of the game.
           required: true
           in: path
           schema: { type: string, minLength: 1 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required:
+                - milliseconds
+                - ip
+              properties:
+                milliseconds:
+                  type: array
+                  description: A list of milliseconds to create buckets for.
+                  items:
+                    type: number
+                    minimum: 0
+                    example: 30
+                  minItems: 1
+                ip:
+                  type: string
+                  description: The public IP (ipv4 or ipv6) of the client.
+                  oneOf:
+                    - type: string
+                      format: ipv4
+                    - type: string
+                      format: ipv6
+                  example: "203.0.113.3"
       responses:
         "200":
           description: |
