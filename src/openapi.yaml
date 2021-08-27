@@ -13,5 +13,38 @@ info:
     url: https://static.gameye.com/images/android-chrome-512x512.png
     altText: Gameye
 
-paths: {}
-components: {}
+security:
+  - gameyeApiKey: []
+    lggApiKey: []
+
+paths:
+  /get-flexmatch-locations/{image}:
+    get:
+      operationId: get-flexmatch-locations
+      summary: |
+        Queries a list of locations and their latency values in a FlexMatch compatible format.
+      parameters:
+        - name: image
+          required: true
+          in: path
+          schema: { type: string, minLength: 1 }
+      responses:
+        "200":
+          description: |
+            Successfully fetched a list of locations.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: false
+
+components:
+  securitySchemes:
+    gameyeApiKey:
+      type: apiKey
+      in: header
+      name: GAMEYE_API_KEY
+    lggApiKey:
+      type: apiKey
+      in: header
+      name: LGG_API_KEY
