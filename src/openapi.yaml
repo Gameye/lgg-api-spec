@@ -173,6 +173,7 @@ paths:
                                   example: frankfurt
                         EscapedDataObject:
                           type: string
+                          description: A compact, escaped JSON representation of the DataObject field.
                           additionalProperties: false
 
               example:
