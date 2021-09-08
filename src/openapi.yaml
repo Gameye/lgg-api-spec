@@ -148,33 +148,30 @@ paths:
                 properties:
                   Attributes:
                     type: object
-                    description: A list of buckets with locations.
-                    additionalProperties:
-                      type: object
-                      additionalProperties: false
-                      required:
-                        - DataObject
-                        - EscapedDataObject
-                      properties:
-                        DataObject:
+                    additionalProperties: false
+                    required:
+                      - DataObject
+                      - EscapedDataObject
+                    properties:
+                      DataObject:
+                        type: object
+                        description: A list of buckets with locations.
+                        additionalProperties:
                           type: object
-                          description: A list of buckets with locations.
-                          additionalProperties:
-                            type: object
-                            additionalProperties: false
-                            required:
-                              - SL
-                            properties:
-                              SL:
-                                type: array
-                                minLength: 0
-                                items:
-                                  type: string
-                                  example: frankfurt
-                        EscapedDataObject:
-                          type: string
-                          description: A compact, escaped JSON representation of the DataObject field.
                           additionalProperties: false
+                          required:
+                            - SL
+                          properties:
+                            SL:
+                              type: array
+                              minLength: 0
+                              items:
+                                type: string
+                                example: frankfurt
+                      EscapedDataObject:
+                        type: string
+                        description: A compact, escaped JSON representation of the DataObject field.
+                        additionalProperties: false
 
               example:
                 Attributes:
