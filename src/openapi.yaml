@@ -154,11 +154,13 @@ paths:
                       - EscapedDataObject
                     properties:
                       DataObject:
-                        type: array
-                        minLength: 0
-                        items:
-                          type: string
-                          example: frankfurt
+                        type: object
+                        additionalProperties:
+                          type: array
+                          minLength: 0
+                          items:
+                            type: string
+                            example: frankfurt
                       EscapedDataObject:
                         type: string
                         description: A compact, escaped JSON representation of the DataObject field.
@@ -173,7 +175,7 @@ paths:
                       "latency_80": ["london-east-1"],
                       "latency_130": ["us-east-1"],
                     }
-                  EscapedDataObject: '{\"latency_30\":{\"SL\":[\"frankfurt\"]},\"latency_50\":{\"SL\":[\"amsterdam\"]},\"latency_80\":{\"SL\":[\"london-east-1\"]},\"latency_130\":{\"SL\":[\"us-east-1\"]}}'
+                  EscapedDataObject: '{\"latency_30\":[\"frankfurt\"],\"latency_50\":[\"amsterdam\"],\"latency_80\":[\"london-east-1\"],\"latency_130\":[\"us-east-1\"]}'
 
 components:
   securitySchemes:
