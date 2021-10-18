@@ -1,4 +1,4 @@
-PACKAGE_NAME?=
+PACKAGE_NAME?=package
 TAG?=v0.0.0-local
 SHELL:=$(PREFIX)/bin/sh
 VERSION:=$(shell `npm bin`/semver $(TAG))
@@ -39,6 +39,7 @@ out/npm/: out/static/openapi.yaml
 		--request-type application/json \
 		--response-type application/json \
 		--response-type text/plain \
+		--response-type application/octet-stream \
 		$<
 	( cd $@ ; npm install --unsafe-perm )
 
