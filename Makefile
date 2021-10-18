@@ -1,7 +1,7 @@
 SHELL:=$(PREFIX)/bin/sh
 TAG?=v0.0.0-local
 VERSION:=$(shell `npm bin`/semver $(TAG))
-PACKAGE_NAME:=@gameye/lgg-api-spec
+PACKAGE_NAME:=lgg-api-spec
 
 rebuild: clean build
 
