@@ -1,14 +1,5 @@
 {
   "private": true,
-  "name": "lgg-api-spec",
-  "version": "1.0.0",
-  "description": "An OpenAPI spec for the LatencyGG API service.",
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sinoz/lgg-api-spec/issues"
-  },
-  "homepage": "https://github.com/sinoz/lgg-api-spec#readme",
   "devDependencies": {
     "@oas3/oas3ts-generator": "^2.1.7",
     "@redocly/openapi-cli": "^1.0.0-beta.63",
