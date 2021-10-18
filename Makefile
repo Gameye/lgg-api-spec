@@ -29,10 +29,10 @@ out/static/openapi.json: out/static/openapi.yaml
 
 out/static/index.html: out/static/openapi.yaml
 	@mkdir --parents $(@D)
-	npx --yes redoc-cli bundle $< --output $@
+	`npm bin`/redoc-cli bundle $< --output $@
 
 out/npm/: out/static/openapi.yaml
-	npx --yes oas3ts-generator@1.2.1 package \
+	`npm bin`/oas3ts-generator package \
 		--package-dir $@ \
 		--package-name @gameye/$(PACKAGE_NAME) \
 		--request-type application/json \
