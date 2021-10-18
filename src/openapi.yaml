@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
   title: LatencyGG API
   version: "0.0.0-local"
@@ -37,14 +37,12 @@ paths:
           description: |
             A list of latency milliseconds to create buckets for, defined in milliseconds.
           schema:
-            type: number
-            example: 30
-            #type: array
-            #items:
-            #type: number
-            #minimum: 0
-            #example: 30
-            #minItems: 1
+            type: array
+            items:
+              type: number
+              minimum: 0
+              example: 30
+              minItems: 1
         - name: ip
           in: query
           required: true
