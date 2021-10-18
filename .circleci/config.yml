@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace: { at: . }
-      - run: make TAG=$CIRCLE_TAG
+      - run: make TAG=$CIRCLE_TAG PACKAGE_NAME=@gameye/$CIRCLE_PROJECT_REPONAME
       - persist_to_workspace:
           root: .
           paths: [out]
