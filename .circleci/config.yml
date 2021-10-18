@@ -1,23 +1,34 @@
 version: 2.1
 
 jobs:
+  install:
+    docker: [image: circleci/node:14]
+    steps:
+      - checkout
+      - run: npm install
+      - persist_to_workspace:
+          root: .
+          paths: [node_modules]
+
   build:
     docker: [image: circleci/node:16]
     steps:
       - checkout
+      - attach_workspace: { at: . }
       - run: make TAG=$CIRCLE_TAG
       - persist_to_workspace:
           root: .
           paths: [out]
 
   test:
-    docker: [image: circleci/node:16]
+    docker: [image: circleci/node:14]
     steps:
       - checkout
+      - attach_workspace: { at: . }
       - run: ./test
 
   publish-npm:
-    docker: [image: circleci/node:16]
+    docker: [image: circleci/node:14]
     steps:
       - attach_workspace: { at: . }
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
@@ -26,16 +37,21 @@ jobs:
 workflows:
   main:
     jobs:
+      - install:
+          filters:
+            tags: { only: /^v\d+\.\d+\.\d+$/ }
       - build:
+          requires: [install]
           filters:
             branches: { ignore: /.*/ }
             tags: { only: /^v\d+\.\d+\.\d+$/ }
       - test:
+          requires: [install]
           filters:
             tags: { only: /^v\d+\.\d+\.\d+$/ }
       - publish-npm:
           context: authorized
-          requires: [build]
+          requires: [install, build]
           filters:
             branches: { ignore: /.*/ }
             tags: { only: /^v\d+\.\d+\.\d+$/ }

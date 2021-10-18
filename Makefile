@@ -1,7 +1,7 @@
 SHELL:=$(PREFIX)/bin/sh
 TAG?=v0.0.0-local
-VERSION:=$(shell npx --yes semver $(TAG))
-PACKAGE_NAME:=lgg-api-spec
+VERSION:=$(shell `npm bin`/semver $(TAG))
+PACKAGE_NAME:=@gameye/lgg-api-spec
 
 rebuild: clean build
 
@@ -25,20 +25,20 @@ out/static/openapi.yaml: src/openapi.yaml
 
 out/static/openapi.json: out/static/openapi.yaml
 	@mkdir --parents $(@D)
-	npx --yes js-yaml $< > $@
+	`npm bin`/js-yaml $< > $@
 
 out/static/index.html: out/static/openapi.yaml
 	@mkdir --parents $(@D)
-	npx --yes redoc-cli bundle $< --output $@
+	`npm bin`/redoc-cli bundle $< --output $@
 
 out/npm/: out/static/openapi.yaml
-	npx --yes oas3ts-generator@1.2.1 package \
+	`npm bin`/oas3ts-generator package \
 		--package-dir $@ \
 		--package-name @gameye/$(PACKAGE_NAME) \
 		--request-type application/json \
 		--response-type application/json \
 		$<
-	( cd $@ ; npm install )
+	( cd $@ ; npm install --unsafe-perm )
 
 .PHONY: \
 	clean \
