@@ -1,9 +1,7 @@
-SHELL:=$(PREFIX)/bin/sh
+PACKAGE_NAME?=package
 TAG?=v0.0.0-local
+SHELL:=$(PREFIX)/bin/sh
 VERSION:=$(shell `npm bin`/semver $(TAG))
-PACKAGE_NAME:=lgg-api-spec
-
-rebuild: clean build
 
 build: \
 	out/static/version.txt \
@@ -12,7 +10,10 @@ build: \
 	out/static/index.html \
 	out/npm/ \
 
+rebuild: clean build
+
 clean:
+	rm -rf bin
 	rm -rf out
 
 out/static/version.txt:
@@ -34,13 +35,16 @@ out/static/index.html: out/static/openapi.yaml
 out/npm/: out/static/openapi.yaml
 	`npm bin`/oas3ts-generator package \
 		--package-dir $@ \
-		--package-name @gameye/$(PACKAGE_NAME) \
+		--package-name $(PACKAGE_NAME) \
 		--request-type application/json \
 		--response-type application/json \
+		--response-type text/plain \
+		--response-type application/octet-stream \
 		$<
 	( cd $@ ; npm install --unsafe-perm )
 
+
 .PHONY: \
-	clean \
 	build \
 	rebuild \
+	clean \
