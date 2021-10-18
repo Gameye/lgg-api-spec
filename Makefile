@@ -25,7 +25,7 @@ out/static/openapi.yaml: src/openapi.yaml
 
 out/static/openapi.json: out/static/openapi.yaml
 	@mkdir --parents $(@D)
-	npx --yes js-yaml $< > $@
+	`npm bin`/js-yaml $< > $@
 
 out/static/index.html: out/static/openapi.yaml
 	@mkdir --parents $(@D)
@@ -38,7 +38,7 @@ out/npm/: out/static/openapi.yaml
 		--request-type application/json \
 		--response-type application/json \
 		$<
-	( cd $@ ; npm install )
+	( cd $@ ; npm install --unsafe-perm )
 
 .PHONY: \
 	clean \
