@@ -38,6 +38,7 @@ out/npm/: out/static/openapi.yaml
 		--package-name $(PACKAGE_NAME) \
 		--request-type application/json \
 		--response-type application/json \
+		--response-type application/x-ndjson \
 		--response-type text/plain \
 		--response-type application/octet-stream \
 		$<
