@@ -21,7 +21,6 @@ paths:
         Fetches a collection of player attributes of locations and their latency values in a FlexMatch compatible format. The response body can be directly inserted into a FlexMatch ticket for a single player.
       security:
         - gameyeApiKey: []
-          lggCredentials: []
       parameters:
         - name: image
           description: The image name of the game.
@@ -48,6 +47,16 @@ paths:
           description: The public IP (ipv4 or ipv6) of the client.
           schema:
             type: string
+        - in: header
+          name: lgg-username
+          schema:
+            type: string
+          required: true
+        - in: header
+          name: lgg-password
+          schema:
+            type: string
+          required: true
       responses:
         "200":
           description: |
@@ -91,7 +100,6 @@ paths:
         Fetches a collection of player attributes of locations and their latency values in a PlayFab compatible format. The response body can be directly inserted into a PlayFab ticket for a single player.
       security:
         - gameyeApiKey: []
-          lggCredentials: []
       parameters:
         - name: image
           description: The image name of the game.
@@ -118,6 +126,16 @@ paths:
           description: The public IP (ipv4 or ipv6) of the client.
           schema:
             type: string
+        - in: header
+          name: lgg-username
+          schema:
+            type: string
+          required: true
+        - in: header
+          name: lgg-password
+          schema:
+            type: string
+          required: true
       responses:
         "200":
           description: |
@@ -169,6 +187,3 @@ components:
       name: gameye-api-key
       description: |
         An API key needed to communicate with Gameye's services.
-    lggCredentials:
-      type: http
-      scheme: basic
