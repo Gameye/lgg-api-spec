@@ -13,16 +13,15 @@ info:
     url: https://static.gameye.com/images/android-chrome-512x512.png
     altText: Gameye
 
-security:
-  - gameyeApiKey: []
-    lggApiKey: []
-
 paths:
   /matchmaker/flexmatch/buckets/{image}:
     get:
       operationId: get-flexmatch-buckets
       summary: |
         Fetches a collection of player attributes of locations and their latency values in a FlexMatch compatible format. The response body can be directly inserted into a FlexMatch ticket for a single player.
+      security:
+        - gameyeApiKey: []
+        - lggCredentials: []
       parameters:
         - name: image
           description: The image name of the game.
@@ -49,13 +48,6 @@ paths:
           description: The public IP (ipv4 or ipv6) of the client.
           schema:
             type: string
-            oneOf:
-              - type: string
-                format: ipv4
-                example: "203.0.113.3"
-              - type: string
-                format: ipv6
-                example: "2001:db8::2021:6a4f:1"
       responses:
         "200":
           description: |
@@ -97,6 +89,9 @@ paths:
       operationId: get-playfab-buckets
       summary: |
         Fetches a collection of player attributes of locations and their latency values in a PlayFab compatible format. The response body can be directly inserted into a PlayFab ticket for a single player.
+      security:
+        - gameyeApiKey: []
+        - lggCredentials: []
       parameters:
         - name: image
           description: The image name of the game.
@@ -123,13 +118,6 @@ paths:
           description: The public IP (ipv4 or ipv6) of the client.
           schema:
             type: string
-            oneOf:
-              - type: string
-                format: ipv4
-                example: "203.0.113.3"
-              - type: string
-                format: ipv6
-                example: "2001:db8::2021:6a4f:1"
       responses:
         "200":
           description: |
@@ -181,9 +169,6 @@ components:
       name: gameye-api-key
       description: |
         An API key needed to communicate with Gameye's services.
-    lggApiKey:
-      type: apiKey
-      in: header
-      name: lgg-api-key
-      description: |
-        An API key needed to communicate with LatencyGG's services.
+    lggCredentials:
+      type: http
+      scheme: basic
