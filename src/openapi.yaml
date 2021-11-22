@@ -48,12 +48,12 @@ paths:
           schema:
             type: string
         - in: header
-          name: lgg-username
+          name: x-lgg-username
           schema:
             type: string
           required: true
         - in: header
-          name: lgg-password
+          name: x-lgg-password
           schema:
             type: string
           required: true
@@ -127,12 +127,12 @@ paths:
           schema:
             type: string
         - in: header
-          name: lgg-username
+          name: x-lgg-username
           schema:
             type: string
           required: true
         - in: header
-          name: lgg-password
+          name: x-lgg-password
           schema:
             type: string
           required: true
