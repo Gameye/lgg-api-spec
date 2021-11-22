@@ -21,7 +21,7 @@ paths:
         Fetches a collection of player attributes of locations and their latency values in a FlexMatch compatible format. The response body can be directly inserted into a FlexMatch ticket for a single player.
       security:
         - gameyeApiKey: []
-        - lggCredentials: []
+          lggCredentials: []
       parameters:
         - name: image
           description: The image name of the game.
@@ -91,7 +91,7 @@ paths:
         Fetches a collection of player attributes of locations and their latency values in a PlayFab compatible format. The response body can be directly inserted into a PlayFab ticket for a single player.
       security:
         - gameyeApiKey: []
-        - lggCredentials: []
+          lggCredentials: []
       parameters:
         - name: image
           description: The image name of the game.
