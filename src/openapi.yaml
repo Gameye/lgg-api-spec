@@ -48,13 +48,6 @@ paths:
           description: The public IP (ipv4 or ipv6) of the client.
           schema:
             type: string
-            oneOf:
-              - type: string
-                format: ipv4
-                example: "203.0.113.3"
-              - type: string
-                format: ipv6
-                example: "2001:db8::2021:6a4f:1"
       responses:
         "200":
           description: |
@@ -125,13 +118,6 @@ paths:
           description: The public IP (ipv4 or ipv6) of the client.
           schema:
             type: string
-            oneOf:
-              - type: string
-                format: ipv4
-                example: "203.0.113.3"
-              - type: string
-                format: ipv6
-                example: "2001:db8::2021:6a4f:1"
       responses:
         "200":
           description: |
