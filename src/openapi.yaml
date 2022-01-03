@@ -13,16 +13,14 @@ info:
     url: https://static.gameye.com/images/android-chrome-512x512.png
     altText: Gameye
 
-security:
-  - gameyeApiKey: []
-    lggApiKey: []
-
 paths:
   /matchmaker/flexmatch/buckets/{image}:
     get:
       operationId: get-flexmatch-buckets
       summary: |
         Fetches a collection of player attributes of locations and their latency values in a FlexMatch compatible format. The response body can be directly inserted into a FlexMatch ticket for a single player.
+      security:
+        - gameyeApiKey: []
       parameters:
         - name: image
           description: The image name of the game.
@@ -49,13 +47,16 @@ paths:
           description: The public IP (ipv4 or ipv6) of the client.
           schema:
             type: string
-            oneOf:
-              - type: string
-                format: ipv4
-                example: "203.0.113.3"
-              - type: string
-                format: ipv6
-                example: "2001:db8::2021:6a4f:1"
+        - in: header
+          name: x-lgg-username
+          schema:
+            type: string
+          required: true
+        - in: header
+          name: x-lgg-password
+          schema:
+            type: string
+          required: true
       responses:
         "200":
           description: |
@@ -97,6 +98,8 @@ paths:
       operationId: get-playfab-buckets
       summary: |
         Fetches a collection of player attributes of locations and their latency values in a PlayFab compatible format. The response body can be directly inserted into a PlayFab ticket for a single player.
+      security:
+        - gameyeApiKey: []
       parameters:
         - name: image
           description: The image name of the game.
@@ -111,27 +114,28 @@ paths:
           description: |
             A list of latency milliseconds to create buckets for, defined in milliseconds.
           schema:
-            type: number
-            example: 30
-            #type: array
-            #items:
-            #type: number
-            #minimum: 0
-            #example: 30
-            #minItems: 1
+            type: array
+            items:
+              type: number
+              minimum: 0
+              example: 30
+              minItems: 1
         - name: ip
           in: query
           required: true
           description: The public IP (ipv4 or ipv6) of the client.
           schema:
             type: string
-            oneOf:
-              - type: string
-                format: ipv4
-                example: "203.0.113.3"
-              - type: string
-                format: ipv6
-                example: "2001:db8::2021:6a4f:1"
+        - in: header
+          name: x-lgg-username
+          schema:
+            type: string
+          required: true
+        - in: header
+          name: x-lgg-password
+          schema:
+            type: string
+          required: true
       responses:
         "200":
           description: |
@@ -183,9 +187,3 @@ components:
       name: gameye-api-key
       description: |
         An API key needed to communicate with Gameye's services.
-    lggApiKey:
-      type: apiKey
-      in: header
-      name: lgg-api-key
-      description: |
-        An API key needed to communicate with LatencyGG's services.
