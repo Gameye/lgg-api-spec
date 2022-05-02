@@ -14,7 +14,53 @@ info:
     altText: Gameye
 
 paths:
+  /stale-locations/{image}:
+    parameters:
+      - name: image
+        description: The image name of the game.
+        required: true
+        in: path
+        schema:
+          type: string
+          minLength: 1
+    get:
+      operationId: get-stale-locations
+      summary: |
+        get a list of locations that need to be measured, including
+        ip-adresses that represent that location
+      security:
+        - gameyeApiKey: []
+      responses:
+        "200":
+          description: |
+            Ok, body contains ip-adresses to measure
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  additionalProperties: false
+                  required:
+                    - host
+                    - types
+                  properties:
+                    host:
+                      $ref: "#/components/schemas/ip"
+                    types:
+                      type: array
+                      items:
+                        type: string
+
   /matchmaker/flexmatch/buckets/{image}:
+    parameters:
+      - name: image
+        description: The image name of the game.
+        required: true
+        in: path
+        schema:
+          type: string
+          minLength: 1
     get:
       operationId: get-flexmatch-buckets
       summary: |
@@ -22,13 +68,6 @@ paths:
       security:
         - gameyeApiKey: []
       parameters:
-        - name: image
-          description: The image name of the game.
-          required: true
-          in: path
-          schema:
-            type: string
-            minLength: 1
         - name: latency_limit
           in: query
           required: true
@@ -94,6 +133,14 @@ paths:
                   }
 
   /matchmaker/playfab/buckets/{image}:
+    parameters:
+      - name: image
+        description: The image name of the game.
+        required: true
+        in: path
+        schema:
+          type: string
+          minLength: 1
     get:
       operationId: get-playfab-buckets
       summary: |
@@ -101,13 +148,6 @@ paths:
       security:
         - gameyeApiKey: []
       parameters:
-        - name: image
-          description: The image name of the game.
-          required: true
-          in: path
-          schema:
-            type: string
-            minLength: 1
         - name: latency_limit
           in: query
           required: true
@@ -187,3 +227,7 @@ components:
       name: gameye-api-key
       description: |
         An API key needed to communicate with Gameye's services.
+  schemas:
+    ip:
+      type: string
+      format: ip
