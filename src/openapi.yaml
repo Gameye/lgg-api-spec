@@ -30,6 +30,23 @@ paths:
         ip-adresses that represent that location
       security:
         - gameyeApiKey: []
+      parameters:
+        - name: ip
+          in: query
+          required: true
+          description: The public IP (ipv4 or ipv6) of the client.
+          schema:
+            type: string
+        - in: header
+          name: x-lgg-username
+          schema:
+            type: string
+          required: true
+        - in: header
+          name: x-lgg-password
+          schema:
+            type: string
+          required: true
       responses:
         "200":
           description: |
@@ -46,9 +63,13 @@ paths:
                     - types
                   properties:
                     host:
-                      $ref: "#/components/schemas/ip"
+                      type: string
+                      description: |
+                        The ip address that needs measuring
                     types:
                       type: array
+                      description: |
+                        types of measurements that need to be performed
                       items:
                         type: string
 
@@ -227,7 +248,3 @@ components:
       name: gameye-api-key
       description: |
         An API key needed to communicate with Gameye's services.
-  schemas:
-    ip:
-      type: string
-      format: ip
